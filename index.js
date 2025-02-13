@@ -1,8 +1,11 @@
 import { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
+import express from 'express';
 
 dotenv.config();
+
+const app = express();
 
 const client = new Client({
     intents: [
@@ -1176,6 +1179,10 @@ async function generateSelfConversation(channel) {
 }
 
 const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hexa Discord Bot is running!');
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
